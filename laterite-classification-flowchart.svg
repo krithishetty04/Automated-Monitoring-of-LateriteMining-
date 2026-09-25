@@ -1,0 +1,142 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fbfaf6"/>
+      <stop offset="1" stop-color="#f0f3ee"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#4d4437" flood-opacity="0.13"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#756c60"/>
+    </marker>
+    <style>
+      .title { font: 700 38px 'Aptos Display', 'Segoe UI', sans-serif; fill: #3b3329; letter-spacing: 0; }
+      .subtitle { font: 400 18px 'Aptos', 'Segoe UI', sans-serif; fill: #766d62; letter-spacing: 0; }
+      .step { font: 700 14px 'Aptos', 'Segoe UI', sans-serif; fill: #ffffff; letter-spacing: 0; }
+      .box-title { font: 700 21px 'Aptos Display', 'Segoe UI', sans-serif; fill: #3b3329; letter-spacing: 0; }
+      .body { font: 400 16px 'Aptos', 'Segoe UI', sans-serif; fill: #5c554c; letter-spacing: 0; }
+      .tech-label { font: 700 15px 'Aptos', 'Segoe UI', sans-serif; fill: #82704d; letter-spacing: 0; }
+      .tech { font: 600 18px 'Aptos Display', 'Segoe UI', sans-serif; fill: #3b3329; letter-spacing: 0; }
+      .small { font: 400 14px 'Aptos', 'Segoe UI', sans-serif; fill: #81786d; letter-spacing: 0; }
+    </style>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <circle cx="1480" cy="90" r="210" fill="#e7e6d7" opacity="0.7"/>
+  <circle cx="70" cy="830" r="190" fill="#eee2d1" opacity="0.7"/>
+
+  <text x="80" y="82" class="title">Laterite Stone Classification</text>
+  <text x="80" y="116" class="subtitle">Image processing, deep learning, evaluation, and dataset management</text>
+  <rect x="80" y="145" width="1440" height="2" fill="#d9d4c9"/>
+
+  <!-- Main pipeline -->
+  <g filter="url(#shadow)">
+    <rect x="80" y="220" width="190" height="285" rx="14" fill="#ffffff" stroke="#9db58e" stroke-width="2"/>
+    <rect x="80" y="220" width="190" height="44" rx="14" fill="#62854e"/>
+    <rect x="80" y="250" width="190" height="14" fill="#62854e"/>
+    <text x="102" y="249" class="step">01  INPUT</text>
+    <text x="108" y="315" class="box-title">Stone images</text>
+    <rect x="108" y="345" width="134" height="94" rx="8" fill="#a87545"/>
+    <circle cx="133" cy="382" r="23" fill="#7a4d2d"/><circle cx="170" cy="369" r="24" fill="#c18a52"/><circle cx="207" cy="390" r="24" fill="#8d5c36"/>
+    <circle cx="151" cy="414" r="22" fill="#c3915c"/><circle cx="200" cy="420" r="21" fill="#704626"/>
+    <text x="108" y="473" class="small">Laterite stone dataset</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="310" y="220" width="220" height="285" rx="14" fill="#ffffff" stroke="#a6b7bd" stroke-width="2"/>
+    <rect x="310" y="220" width="220" height="44" rx="14" fill="#637f88"/>
+    <rect x="310" y="250" width="220" height="14" fill="#637f88"/>
+    <text x="332" y="249" class="step">02  PREPROCESSING</text>
+    <text x="338" y="312" class="box-title">Image preparation</text>
+    <text x="338" y="358" class="body">Resize and normalize</text>
+    <text x="338" y="390" class="body">Augmentation</text>
+    <text x="338" y="422" class="body">Flip, rotate, zoom, contrast</text>
+    <text x="338" y="470" class="small">OpenCV image processing</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="570" y="220" width="240" height="285" rx="14" fill="#ffffff" stroke="#d2b16c" stroke-width="2"/>
+    <rect x="570" y="220" width="240" height="44" rx="14" fill="#bd8b36"/>
+    <rect x="570" y="250" width="240" height="14" fill="#bd8b36"/>
+    <text x="592" y="249" class="step">03  MODEL &amp; TRAINING</text>
+    <text x="598" y="312" class="box-title">Transfer learning</text>
+    <text x="598" y="358" class="body">ResNet50 pretrained</text>
+    <text x="598" y="390" class="body">Adam optimizer</text>
+    <text x="598" y="422" class="body">Train in Google Colab</text>
+    <text x="598" y="470" class="small">TensorFlow / Keras</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="850" y="220" width="220" height="285" rx="14" fill="#ffffff" stroke="#d8a36f" stroke-width="2"/>
+    <rect x="850" y="220" width="220" height="44" rx="14" fill="#c87e3f"/>
+    <rect x="850" y="250" width="220" height="14" fill="#c87e3f"/>
+    <text x="872" y="249" class="step">04  ARCHITECTURE</text>
+    <text x="878" y="312" class="box-title">Classification head</text>
+    <text x="878" y="358" class="body">Global average pooling</text>
+    <text x="878" y="390" class="body">Dropout (0.35)</text>
+    <text x="878" y="422" class="body">Dense layer, 3 outputs</text>
+    <text x="878" y="470" class="small">Softmax activation</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="1110" y="220" width="190" height="285" rx="14" fill="#ffffff" stroke="#aaa2bb" stroke-width="2"/>
+    <rect x="1110" y="220" width="190" height="44" rx="14" fill="#76698e"/>
+    <rect x="1110" y="250" width="190" height="14" fill="#76698e"/>
+    <text x="1132" y="249" class="step">05  EVALUATION</text>
+    <text x="1138" y="312" class="box-title">Model metrics</text>
+    <text x="1138" y="358" class="body">Accuracy</text>
+    <text x="1138" y="390" class="body">Precision and recall</text>
+    <text x="1138" y="422" class="body">F1-score</text>
+    <text x="1138" y="470" class="small">scikit-learn evaluation</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="1340" y="220" width="180" height="285" rx="14" fill="#ffffff" stroke="#d59aa5" stroke-width="2"/>
+    <rect x="1340" y="220" width="180" height="44" rx="14" fill="#b85d70"/>
+    <rect x="1340" y="250" width="180" height="14" fill="#b85d70"/>
+    <text x="1362" y="249" class="step">06  OUTPUT</text>
+    <text x="1368" y="312" class="box-title">Predicted grade</text>
+    <rect x="1368" y="344" width="112" height="30" rx="6" fill="#9bc66d"/><text x="1400" y="365" class="body" fill="#294b2a">Grade A</text>
+    <rect x="1368" y="382" width="112" height="30" rx="6" fill="#e8c653"/><text x="1400" y="403" class="body">Grade B</text>
+    <rect x="1368" y="420" width="112" height="30" rx="6" fill="#e77a6f"/><text x="1400" y="441" class="body">Grade C</text>
+    <text x="1368" y="477" class="small">Best test accuracy: 91.11%</text>
+  </g>
+
+  <path d="M270 362 H310" stroke="#756c60" stroke-width="3" fill="none" marker-end="url(#arrow)"/>
+  <path d="M530 362 H570" stroke="#756c60" stroke-width="3" fill="none" marker-end="url(#arrow)"/>
+  <path d="M810 362 H850" stroke="#756c60" stroke-width="3" fill="none" marker-end="url(#arrow)"/>
+  <path d="M1070 362 H1110" stroke="#756c60" stroke-width="3" fill="none" marker-end="url(#arrow)"/>
+  <path d="M1300 362 H1340" stroke="#756c60" stroke-width="3" fill="none" marker-end="url(#arrow)"/>
+
+  <!-- Supporting technology layer -->
+  <text x="80" y="585" class="box-title">Tools and storage</text>
+  <text x="80" y="614" class="subtitle">Technologies supporting the classification workflow</text>
+
+  <g filter="url(#shadow)">
+    <rect x="80" y="660" width="330" height="135" rx="12" fill="#ffffff" stroke="#b8c9bc" stroke-width="2"/>
+    <text x="108" y="698" class="tech-label">IMAGE PROCESSING</text>
+    <text x="108" y="735" class="tech">OpenCV</text>
+    <text x="108" y="767" class="small">Resize, normalize, augment</text>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="435" y="660" width="330" height="135" rx="12" fill="#ffffff" stroke="#dfc99b" stroke-width="2"/>
+    <text x="463" y="698" class="tech-label">DEEP LEARNING</text>
+    <text x="463" y="735" class="tech">TensorFlow + Keras</text>
+    <text x="463" y="767" class="small">ResNet50 transfer learning</text>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="790" y="660" width="330" height="135" rx="12" fill="#ffffff" stroke="#c5bcd1" stroke-width="2"/>
+    <text x="818" y="698" class="tech-label">EXPERIMENTS &amp; EVALUATION</text>
+    <text x="818" y="735" class="tech">Google Colab + scikit-learn</text>
+    <text x="818" y="767" class="small">Training and performance metrics</text>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="1145" y="660" width="375" height="135" rx="12" fill="#ffffff" stroke="#b7c7d0" stroke-width="2"/>
+    <text x="1173" y="698" class="tech-label">DATASET STORAGE</text>
+    <text x="1173" y="735" class="tech">Google Drive</text>
+    <text x="1173" y="767" class="small">Images, trained model, and dataset</text>
+  </g>
+
+  <text x="80" y="850" class="small">Laterite Stone Classification | Three-class image classification pipeline</text>
+</svg>

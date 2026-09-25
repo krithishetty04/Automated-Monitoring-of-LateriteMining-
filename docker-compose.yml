@@ -1,0 +1,53 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: quarry_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: quarry_user
+      POSTGRES_PASSWORD: quarry_pass
+      POSTGRES_DB: quarry_monitoring
+    ports:
+      - "5432:5432"
+    volumes:
+      - quarry_pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U quarry_user -d quarry_monitoring"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    build: ./backend
+    container_name: quarry_backend
+    restart: unless-stopped
+    env_file:
+      - ./backend/.env
+    environment:
+      DATABASE_URL: postgresql://quarry_user:quarry_pass@postgres:5432/quarry_monitoring
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      # Mount your Earth Engine service-account key into the container and
+      # point GEE_PRIVATE_KEY_FILE (in backend/.env) at this path, e.g.
+      # /run/secrets/gee-key.json
+      - ./backend/secrets:/run/secrets:ro
+
+  frontend:
+    build: ./frontend
+    container_name: quarry_frontend
+    restart: unless-stopped
+    environment:
+      NEXT_PUBLIC_API_BASE_URL: http://localhost:8000
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+volumes:
+  quarry_pg_data:

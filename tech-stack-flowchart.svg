@@ -1,0 +1,129 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f5f8fb"/>
+      <stop offset="1" stop-color="#e8f0f4"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#18364a" flood-opacity="0.12"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#537080"/>
+    </marker>
+    <style>
+      .title { font: 700 38px 'Aptos Display', 'Segoe UI', sans-serif; fill: #123044; letter-spacing: 0; }
+      .subtitle { font: 400 18px 'Aptos', 'Segoe UI', sans-serif; fill: #5a7482; letter-spacing: 0; }
+      .step { font: 700 15px 'Aptos', 'Segoe UI', sans-serif; fill: #ffffff; letter-spacing: 0; }
+      .box-title { font: 700 21px 'Aptos Display', 'Segoe UI', sans-serif; fill: #123044; letter-spacing: 0; }
+      .body { font: 400 16px 'Aptos', 'Segoe UI', sans-serif; fill: #3e5967; letter-spacing: 0; }
+      .tech-label { font: 700 15px 'Aptos', 'Segoe UI', sans-serif; fill: #477080; letter-spacing: 0; }
+      .tech { font: 600 18px 'Aptos Display', 'Segoe UI', sans-serif; fill: #123044; letter-spacing: 0; }
+      .small { font: 400 14px 'Aptos', 'Segoe UI', sans-serif; fill: #607985; letter-spacing: 0; }
+    </style>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <circle cx="1480" cy="70" r="180" fill="#d9e9e5" opacity="0.55"/>
+  <circle cx="90" cy="820" r="210" fill="#dce9f1" opacity="0.7"/>
+
+  <text x="80" y="82" class="title">Quarry Monitoring System</text>
+  <text x="80" y="116" class="subtitle">Technology flow from satellite imagery to actionable alerts</text>
+  <rect x="80" y="145" width="1440" height="2" fill="#c6d7de"/>
+
+  <!-- Main pipeline -->
+  <g filter="url(#shadow)">
+    <rect x="80" y="220" width="255" height="285" rx="14" fill="#ffffff" stroke="#8db4c1" stroke-width="2"/>
+    <rect x="80" y="220" width="255" height="44" rx="14" fill="#267c8b"/>
+    <rect x="80" y="250" width="255" height="14" fill="#267c8b"/>
+    <text x="103" y="249" class="step">01  DATA SOURCES</text>
+    <text x="108" y="310" class="box-title">Satellite imagery</text>
+    <text x="108" y="354" class="body">Sentinel-1 (SAR)</text>
+    <text x="108" y="386" class="body">Sentinel-2 (Optical)</text>
+    <text x="108" y="438" class="box-title" font-size="18">Google Earth Engine</text>
+    <text x="108" y="470" class="small">Cloud geospatial platform</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="405" y="220" width="255" height="285" rx="14" fill="#ffffff" stroke="#a8b991" stroke-width="2"/>
+    <rect x="405" y="220" width="255" height="44" rx="14" fill="#6c8d4d"/>
+    <rect x="405" y="250" width="255" height="14" fill="#6c8d4d"/>
+    <text x="428" y="249" class="step">02  PREPROCESSING</text>
+    <text x="433" y="310" class="box-title">Image preparation</text>
+    <text x="433" y="356" class="body">Cloud masking and clipping</text>
+    <text x="433" y="388" class="body">NDVI: vegetation change</text>
+    <text x="433" y="420" class="body">BSI: bare soil index</text>
+    <text x="433" y="470" class="small">Normalized analysis inputs</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="730" y="220" width="255" height="285" rx="14" fill="#ffffff" stroke="#d2ad61" stroke-width="2"/>
+    <rect x="730" y="220" width="255" height="44" rx="14" fill="#c98e2e"/>
+    <rect x="730" y="250" width="255" height="14" fill="#c98e2e"/>
+    <text x="753" y="249" class="step">03  CHANGE DETECTION</text>
+    <text x="758" y="310" class="box-title">Geospatial analysis</text>
+    <text x="758" y="356" class="body">Quarry boundary comparison</text>
+    <text x="758" y="388" class="body">New excavation detection</text>
+    <text x="758" y="420" class="body">Area and depth estimation</text>
+    <text x="758" y="470" class="small">Python change-detection rules</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="1055" y="220" width="255" height="285" rx="14" fill="#ffffff" stroke="#c78888" stroke-width="2"/>
+    <rect x="1055" y="220" width="255" height="44" rx="14" fill="#b85656"/>
+    <rect x="1055" y="250" width="255" height="14" fill="#b85656"/>
+    <text x="1078" y="249" class="step">04  ALERTS &amp; RESULTS</text>
+    <text x="1083" y="310" class="box-title">Decision and notification</text>
+    <text x="1083" y="356" class="body">SAFE / PERMITTED / ALERT</text>
+    <text x="1083" y="388" class="body">Alert records and statistics</text>
+    <text x="1083" y="420" class="body">SMTP email notification</text>
+    <text x="1083" y="470" class="small">Unauthorized expansion signal</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="1380" y="220" width="140" height="285" rx="14" fill="#ffffff" stroke="#6b9d9b" stroke-width="2"/>
+    <rect x="1380" y="220" width="140" height="44" rx="14" fill="#3b827c"/>
+    <rect x="1380" y="250" width="140" height="14" fill="#3b827c"/>
+    <text x="1403" y="249" class="step">05  DASHBOARD</text>
+    <text x="1401" y="322" class="box-title" font-size="19">Live view</text>
+    <text x="1401" y="368" class="body">Maps</text>
+    <text x="1401" y="400" class="body">Charts</text>
+    <text x="1401" y="432" class="body">History</text>
+    <text x="1401" y="464" class="body">Alerts</text>
+  </g>
+
+  <path d="M335 362 H405" stroke="#537080" stroke-width="3" fill="none" marker-end="url(#arrow)"/>
+  <path d="M660 362 H730" stroke="#537080" stroke-width="3" fill="none" marker-end="url(#arrow)"/>
+  <path d="M985 362 H1055" stroke="#537080" stroke-width="3" fill="none" marker-end="url(#arrow)"/>
+  <path d="M1310 362 H1380" stroke="#537080" stroke-width="3" fill="none" marker-end="url(#arrow)"/>
+
+  <!-- Supporting technology layer -->
+  <text x="80" y="585" class="box-title">Supporting technology stack</text>
+  <text x="80" y="614" class="subtitle">The services that automate, store, expose, and present the monitoring workflow</text>
+
+  <g filter="url(#shadow)">
+    <rect x="80" y="660" width="330" height="135" rx="12" fill="#ffffff" stroke="#b8ccd5" stroke-width="2"/>
+    <text x="108" y="698" class="tech-label">BACKEND API</text>
+    <text x="108" y="735" class="tech">FastAPI + Uvicorn</text>
+    <text x="108" y="767" class="small">Python REST endpoints</text>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="435" y="660" width="330" height="135" rx="12" fill="#ffffff" stroke="#b8ccd5" stroke-width="2"/>
+    <text x="463" y="698" class="tech-label">DATABASE</text>
+    <text x="463" y="735" class="tech">PostgreSQL + SQLAlchemy</text>
+    <text x="463" y="767" class="small">Quarries, runs, results, alerts</text>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="790" y="660" width="330" height="135" rx="12" fill="#ffffff" stroke="#b8ccd5" stroke-width="2"/>
+    <text x="818" y="698" class="tech-label">FRONTEND</text>
+    <text x="818" y="735" class="tech">Next.js + React + TypeScript</text>
+    <text x="818" y="767" class="small">Leaflet maps + Recharts</text>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="1145" y="660" width="375" height="135" rx="12" fill="#ffffff" stroke="#b8ccd5" stroke-width="2"/>
+    <text x="1173" y="698" class="tech-label">AUTOMATION &amp; DEPLOYMENT</text>
+    <text x="1173" y="735" class="tech">APScheduler + Docker Compose</text>
+    <text x="1173" y="767" class="small">Weekly runs and containerized services</text>
+  </g>
+
+  <text x="80" y="850" class="small">Quarry Monitoring | Satellite-based change detection and unauthorized expansion alerts</text>
+</svg>
