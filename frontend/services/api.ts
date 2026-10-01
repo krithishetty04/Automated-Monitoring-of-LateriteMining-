@@ -5,6 +5,7 @@ import {
   Alert,
   Quarry,
   RunGeoJsonLayers,
+  LateritePredictionSummary,
 } from "@/types";
 
 const API_BASE_URL =
@@ -45,6 +46,21 @@ export async function getQuarryGeoJson(): Promise<GeoJSON.Feature> {
 
 export async function getAlerts(): Promise<Alert[]> {
   const res = await client.get<Alert[]>("/api/alerts");
+  return res.data;
+}
+
+export async function getLateritePrediction(): Promise<LateritePredictionSummary> {
+  const res = await client.get<LateritePredictionSummary>("/api/monitoring/laterite");
+  return res.data;
+}
+
+export async function predictLateriteImage(file: File): Promise<LateritePredictionSummary> {
+  const form = new FormData();
+  form.append("file", file);
+
+  const res = await client.post<LateritePredictionSummary>("/api/monitoring/laterite/predict", form, {
+    headers: { "Content-Type": "multipart/form-data" },
+  });
   return res.data;
 }
 

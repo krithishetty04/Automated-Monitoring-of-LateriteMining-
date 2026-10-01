@@ -1,14 +1,46 @@
+import json
+from pathlib import Path
 from typing import List
-from fastapi import APIRouter, Depends, HTTPException
+
+from fastapi import APIRouter, Depends, File, HTTPException, UploadFile
 from sqlalchemy.orm import Session
 
 from app.database import get_db
 from app.models.monitoring_run import MonitoringRun
 from app.schemas.schemas import MonitoringRunOut, MonitoringRunSummary, MonitoringRunRequest, FeatureCollection
 from app.services.monitoring import run_monitoring
-import json
+from app.services.laterite_model import get_laterite_prediction_summary, predict_laterite_from_image_path
 
 router = APIRouter(prefix="/api/monitoring", tags=["monitoring"])
+
+
+@router.get("/laterite")
+def get_laterite_prediction():
+    """Expose laterite model status and a sample prediction for the dashboard UI."""
+    return get_laterite_prediction_summary()
+
+
+@router.post("/laterite/predict")
+async def predict_uploaded_laterite_image(file: UploadFile = File(...)):
+    """Run the laterite model on an uploaded image and return the predicted grade + confidence."""
+    if not file.filename:
+        raise HTTPException(status_code=400, detail="No file was uploaded")
+
+    suffix = Path(file.filename).suffix.lower()
+    allowed = {".jpg", ".jpeg", ".png", ".bmp", ".tif", ".tiff", ".webp"}
+    if suffix not in allowed:
+        raise HTTPException(status_code=400, detail="Unsupported file type")
+
+    temp_dir = Path("/tmp") if hasattr(Path("/tmp"), "exists") and Path("/tmp").exists() else Path.cwd()
+    save_path = temp_dir / f"laterite_upload_{abs(hash(file.filename))}{suffix}"
+    content = await file.read()
+    save_path.write_bytes(content)
+
+    try:
+        return predict_laterite_from_image_path(str(save_path))
+    finally:
+        if save_path.exists():
+            save_path.unlink(missing_ok=True)
 
 
 @router.post("/run", response_model=MonitoringRunOut)

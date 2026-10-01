@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 import {
   Alert,
+  LateritePredictionSummary,
   MonitoringRun,
   MonitoringRunSummary,
   Quarry,
@@ -12,6 +13,7 @@ import {
   getAlerts,
   getHistory,
   getLatestRun,
+  getLateritePrediction,
   getQuarry,
   getQuarryGeoJson,
   getRunGeoJson,
@@ -25,6 +27,7 @@ export function useDashboardData() {
   const [latestRun, setLatestRun] = useState<MonitoringRun | null>(null);
   const [history, setHistory] = useState<MonitoringRunSummary[]>([]);
   const [alerts, setAlerts] = useState<Alert[]>([]);
+  const [lateritePrediction, setLateritePrediction] = useState<LateritePredictionSummary | null>(null);
   const [layers, setLayers] = useState<RunGeoJsonLayers | null>(null);
   const [mapRunId, setMapRunId] = useState<number | null>(null);
   const [isRefreshing, setIsRefreshing] = useState(false);
@@ -34,12 +37,13 @@ export function useDashboardData() {
   const refreshAll = useCallback(async () => {
     setIsRefreshing(true);
     try {
-      const [quarryResult, geoResult, latestResult, historyResult, alertsResult] = await Promise.allSettled([
+      const [quarryResult, geoResult, latestResult, historyResult, alertsResult, lateriteResult] = await Promise.allSettled([
         getQuarry(),
         getQuarryGeoJson(),
         getLatestRun(),
         getHistory(),
         getAlerts(),
+        getLateritePrediction(),
       ]);
 
       if (quarryResult.status === "fulfilled") setQuarry(quarryResult.value);
@@ -47,6 +51,7 @@ export function useDashboardData() {
       if (latestResult.status === "fulfilled") setLatestRun(latestResult.value);
       if (historyResult.status === "fulfilled") setHistory(historyResult.value);
       if (alertsResult.status === "fulfilled") setAlerts(alertsResult.value);
+      if (lateriteResult.status === "fulfilled") setLateritePrediction(lateriteResult.value);
 
       const run = latestResult.status === "fulfilled" ? latestResult.value : null;
       if (run) {
@@ -59,7 +64,7 @@ export function useDashboardData() {
         }
       }
 
-      const failures = [quarryResult, geoResult, latestResult, historyResult, alertsResult]
+      const failures = [quarryResult, geoResult, latestResult, historyResult, alertsResult, lateriteResult]
         .filter((result) => result.status === "rejected").length;
       setDashboardError(failures ? "Some monitoring data could not be refreshed." : null);
       setLastUpdated(new Date());
@@ -98,6 +103,7 @@ export function useDashboardData() {
     latestRun,
     history,
     alerts,
+    lateritePrediction,
     layers,
     mapRunId,
     isRefreshing,

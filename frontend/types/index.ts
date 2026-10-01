@@ -36,6 +36,15 @@ export interface MonitoringRunSummary {
   source: string;
 }
 
+export interface LateritePredictionSummary {
+  available: boolean;
+  model_path: string;
+  reason: string;
+  grade: string | null;
+  confidence: number | null;
+  sample_image: string | null;
+}
+
 export interface Alert {
   id: number;
   monitoring_run_id: number;

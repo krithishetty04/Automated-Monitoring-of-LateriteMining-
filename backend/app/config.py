@@ -40,6 +40,12 @@ class Settings(BaseSettings):
     # the 0.01 ha alert threshold unchanged while requiring spatial coherence.
     MIN_CONNECTED_PIXELS: int = Field(default=2)
 
+    # ---------------- Laterite grade model ----------------
+    LATERITE_MODEL_PATH: str = Field(
+        default="",
+        description="Optional absolute path to the trained laterite-grade Keras model",
+    )
+
     # ---------------- Scheduler ----------------
     ENABLE_SCHEDULER: bool = Field(default=True)
     # Cron-style: day_of_week (sat), hour, minute
