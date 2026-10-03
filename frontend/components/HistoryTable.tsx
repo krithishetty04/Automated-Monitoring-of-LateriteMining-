@@ -1,4 +1,5 @@
  import { MonitoringRunSummary } from "@/types";
+import { formatAcres } from "@/area";
 
 function statusBadge(status: string) {
   const map: Record<string, string> = {
@@ -8,7 +9,7 @@ function statusBadge(status: string) {
     BASELINE: "bg-clay-600/20 text-clay-400 border-clay-600/50",
     ERROR: "bg-base-700 text-base-600 border-base-600",
   };
-  return map[status] || "bg-base-700 text-[#ece6d8]";
+  return map[status] || "bg-base-700 text-[#EEEDEB]";
 }
 
 export default function HistoryTable({ runs }: { runs: MonitoringRunSummary[] }) {
@@ -33,13 +34,13 @@ export default function HistoryTable({ runs }: { runs: MonitoringRunSummary[] })
           {runs.map((run) => (
             <tr key={run.id} className="border-b border-base-800 hover:bg-base-800/50">
               <td className="py-2 pr-4">{run.image_date}</td>
-              <td className="py-2 pr-4">{run.previous_image_date || "—"}</td>
-              <td className="py-2 pr-4">{run.current_excavation_area_ha.toFixed(2)} ha</td>
+              <td className="py-2 pr-4">{run.previous_image_date || "-"}</td>
+              <td className="py-2 pr-4">{formatAcres(run.current_excavation_area_ha)}</td>
               <td className="py-2 pr-4">
-                {run.status === "BASELINE" ? "—" : `${run.new_excavation_area_ha.toFixed(2)} ha`}
+                {run.status === "BASELINE" ? "-" : formatAcres(run.new_excavation_area_ha)}
               </td>
               <td className="py-2 pr-4">
-                {run.status === "BASELINE" ? "—" : `${run.outside_area_ha.toFixed(2)} ha`}
+                {run.status === "BASELINE" ? "-" : formatAcres(run.outside_area_ha)}
               </td>
               <td className="py-2 pr-4">
                 <span className={`px-2 py-0.5 rounded border text-xs ${statusBadge(run.status)}`}>

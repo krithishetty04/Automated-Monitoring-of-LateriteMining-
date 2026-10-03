@@ -6,6 +6,9 @@ import {
   Quarry,
   RunGeoJsonLayers,
   LateritePredictionSummary,
+  SiteProgress,
+  SiteUpdate,
+  SiteUpdateInput,
 } from "@/types";
 
 const API_BASE_URL =
@@ -73,5 +76,15 @@ export async function triggerMonitoringRun(): Promise<MonitoringRun> {
   const res = await client.post<MonitoringRun>("/api/monitoring/run", {
     mode: "real",
   });
+  return res.data;
+}
+
+export async function getSiteProgress(): Promise<SiteProgress> {
+  const res = await client.get<SiteProgress>("/api/site-updates");
+  return res.data;
+}
+
+export async function createSiteUpdate(input: SiteUpdateInput): Promise<SiteUpdate> {
+  const res = await client.post<SiteUpdate>("/api/site-updates", input);
   return res.data;
 }

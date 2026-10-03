@@ -6,6 +6,7 @@ import { ReactNode } from "react";
 
 const navItems = [
   { href: "/", label: "Dashboard", icon: "⌂" },
+  { href: "/prediction", label: "Stone Quality", icon: "S" },
   { href: "/map", label: "Quarry Map", icon: "⌖" },
   { href: "/alerts", label: "Alerts & Notifications", icon: "!" },
   { href: "/history", label: "Monitoring History", icon: "◷" },

@@ -1,4 +1,5 @@
 import { MonitoringRun, Quarry } from "@/types";
+import { formatAcres, formatAcresValue, PERMITTED_AREA_ACRES } from "@/area";
 
 function statusLabel(status: string) {
   switch (status) {
@@ -52,23 +53,23 @@ export default function SummaryCards({
   if (compact) {
     return (
       <div className="grid grid-cols-2 gap-2 md:grid-cols-3 xl:grid-cols-5">
-        <Card label="Official Area" value={`${quarry?.area_ha?.toFixed(2) ?? "—"} ha`} accent="text-emerald-400" compact />
-        <Card label="Current Excavation" value={`${run?.current_excavation_area_ha?.toFixed(2) ?? "0.00"} ha`} accent="text-red-400" compact />
-        <Card label="Previous Excavation" value={`${run?.previous_excavation_area_ha?.toFixed(2) ?? "0.00"} ha`} compact />
-        <Card label="Inside Permitted" value={`${run?.inside_area_ha?.toFixed(2) ?? "0.00"} ha`} accent="text-emerald-400" compact />
-        <Card label="Unauthorized" value={`${run?.outside_area_ha?.toFixed(2) ?? "0.00"} ha`} accent="text-amber-400" compact />
+        <Card label="Permitted Area" value={formatAcresValue(PERMITTED_AREA_ACRES)} accent="text-emerald-400" compact />
+        <Card label="Current Excavation" value={formatAcres(run?.current_excavation_area_ha ?? 0)} accent="text-red-400" compact />
+        <Card label="Previous Excavation" value={formatAcres(run?.previous_excavation_area_ha ?? 0)} compact />
+        <Card label="Inside Permitted" value={formatAcres(run?.inside_area_ha ?? 0)} accent="text-emerald-400" compact />
+        <Card label="Unauthorized" value={formatAcres(run?.outside_area_ha ?? 0)} accent="text-amber-400" compact />
       </div>
     );
   }
 
   return (
     <div className="grid grid-cols-2 gap-3 md:grid-cols-4 xl:grid-cols-7">
-      <Card label="Official Area" value={`${quarry?.area_ha?.toFixed(2) ?? "—"} ha`} accent="text-emerald-400" />
-      <Card label="Current Excavation" value={`${run?.current_excavation_area_ha?.toFixed(2) ?? "0.00"} ha`} accent="text-red-400" />
-      <Card label="Previous Excavation" value={`${run?.previous_excavation_area_ha?.toFixed(2) ?? "0.00"} ha`} />
-      <Card label="New Excavation" value={`${run?.new_excavation_area_ha?.toFixed(2) ?? "0.00"} ha`} />
-      <Card label="Inside Permitted" value={`${run?.inside_area_ha?.toFixed(2) ?? "0.00"} ha`} accent="text-emerald-400" />
-      <Card label="Unauthorized Expansion" value={`${run?.outside_area_ha?.toFixed(2) ?? "0.00"} ha`} accent="text-amber-400" />
+      <Card label="Permitted Area" value={formatAcresValue(PERMITTED_AREA_ACRES)} accent="text-emerald-400" />
+      <Card label="Current Excavation" value={formatAcres(run?.current_excavation_area_ha ?? 0)} accent="text-red-400" />
+      <Card label="Previous Excavation" value={formatAcres(run?.previous_excavation_area_ha ?? 0)} />
+      <Card label="New Excavation" value={formatAcres(run?.new_excavation_area_ha ?? 0)} />
+      <Card label="Inside Permitted" value={formatAcres(run?.inside_area_ha ?? 0)} accent="text-emerald-400" />
+      <Card label="Unauthorized Expansion" value={formatAcres(run?.outside_area_ha ?? 0)} accent="text-amber-400" />
       <Card label="Current Status" value={status.text} accent={status.color} />
     </div>
   );

@@ -10,12 +10,13 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { MonitoringRunSummary } from "@/types";
+import { hectaresToAcres } from "@/area";
 
 export default function Charts({ runs }: { runs: MonitoringRunSummary[] }) {
   const data = runs.map((r) => ({
     date: r.image_date,
-    excavation: r.current_excavation_area_ha,
-    unauthorized: r.outside_area_ha,
+    excavation: hectaresToAcres(r.current_excavation_area_ha),
+    unauthorized: hectaresToAcres(r.outside_area_ha),
   }));
 
   return (
@@ -26,13 +27,13 @@ export default function Charts({ runs }: { runs: MonitoringRunSummary[] }) {
         </h3>
         <ResponsiveContainer width="100%" height={220}>
           <LineChart data={data}>
-            <CartesianGrid stroke="#334155" strokeDasharray="3 3" />
-            <XAxis dataKey="date" stroke="#94A3B8" fontSize={11} />
-            <YAxis stroke="#94A3B8" fontSize={11} unit=" ha" />
+            <CartesianGrid stroke="#4B5261" strokeDasharray="3 3" />
+            <XAxis dataKey="date" stroke="#939185" fontSize={11} />
+            <YAxis stroke="#939185" fontSize={11} unit=" ac" />
             <Tooltip
-              contentStyle={{ backgroundColor: "#0F172A", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 12, fontSize: 12, color: "#E2E8F0" }}
+              contentStyle={{ backgroundColor: "#252C3B", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 12, fontSize: 12, color: "#EEEDEB" }}
             />
-            <Line type="monotone" dataKey="excavation" stroke="#EF4444" strokeWidth={2} dot={false} />
+            <Line type="monotone" dataKey="excavation" stroke="#D28A83" strokeWidth={2} dot={false} />
           </LineChart>
         </ResponsiveContainer>
       </div>
@@ -43,13 +44,13 @@ export default function Charts({ runs }: { runs: MonitoringRunSummary[] }) {
         </h3>
         <ResponsiveContainer width="100%" height={220}>
           <LineChart data={data}>
-            <CartesianGrid stroke="#334155" strokeDasharray="3 3" />
-            <XAxis dataKey="date" stroke="#94A3B8" fontSize={11} />
-            <YAxis stroke="#94A3B8" fontSize={11} unit=" ha" />
+            <CartesianGrid stroke="#4B5261" strokeDasharray="3 3" />
+            <XAxis dataKey="date" stroke="#939185" fontSize={11} />
+            <YAxis stroke="#939185" fontSize={11} unit=" ac" />
             <Tooltip
-              contentStyle={{ backgroundColor: "#0F172A", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 12, fontSize: 12, color: "#E2E8F0" }}
+              contentStyle={{ backgroundColor: "#252C3B", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 12, fontSize: 12, color: "#EEEDEB" }}
             />
-            <Line type="monotone" dataKey="unauthorized" stroke="#F59E0B" strokeWidth={2} dot={false} />
+            <Line type="monotone" dataKey="unauthorized" stroke="#E6B9A6" strokeWidth={2} dot={false} />
           </LineChart>
         </ResponsiveContainer>
       </div>

@@ -6,6 +6,18 @@ export interface ExcavationResult {
   previous_excavation_geojson: string | null;
   new_excavation_geojson: string | null;
   unauthorized_expansion_geojson: string | null;
+  depth_status: "AVAILABLE" | "UNAVAILABLE" | "INSUFFICIENT_DATA" | "ESTIMATE" | null;
+  depth_message: string | null;
+  mean_depth_m: number | null;
+  median_depth_m: number | null;
+  max_depth_m: number | null;
+  min_depth_m: number | null;
+  estimated_volume_m3: number | null;
+  valid_elevation_samples: number | null;
+  elevation_source: string | null;
+  depth_method: string | null;
+  before_elevation_date: string | null;
+  after_elevation_date: string | null;
 }
 
 export interface MonitoringRun {
@@ -69,4 +81,33 @@ export interface RunGeoJsonLayers {
   previous_excavation: GeoJSON.FeatureCollection | GeoJSON.Feature | null;
   new_excavation: GeoJSON.FeatureCollection | GeoJSON.Feature | null;
   unauthorized_expansion: GeoJSON.FeatureCollection | GeoJSON.Feature | null;
+}
+
+export type CoverStatus = "NEEDS_COVERING" | "COVERING" | "COVERED" | "AGRICULTURE";
+
+export interface SiteUpdate {
+  id: number;
+  area_name: string | null;
+  tonnes_removed: number | null;
+  depth_m: number | null;
+  cover_status: CoverStatus | null;
+  notes: string | null;
+  created_at: string;
+}
+
+export interface SiteProgress {
+  total_tonnes_removed: number;
+  has_tonnage_records: boolean;
+  latest_depth_m: number | null;
+  latest_depth_area: string | null;
+  latest_depth_at: string | null;
+  updates: SiteUpdate[];
+}
+
+export interface SiteUpdateInput {
+  area_name?: string;
+  tonnes_removed?: number;
+  depth_m?: number;
+  cover_status?: CoverStatus;
+  notes?: string;
 }

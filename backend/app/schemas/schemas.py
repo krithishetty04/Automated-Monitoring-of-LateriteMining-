@@ -24,6 +24,18 @@ class ExcavationResultOut(BaseModel):
     previous_excavation_geojson: Optional[str] = None
     new_excavation_geojson: Optional[str] = None
     unauthorized_expansion_geojson: Optional[str] = None
+    depth_status: Optional[str] = None
+    depth_message: Optional[str] = None
+    mean_depth_m: Optional[float] = None
+    median_depth_m: Optional[float] = None
+    max_depth_m: Optional[float] = None
+    min_depth_m: Optional[float] = None
+    estimated_volume_m3: Optional[float] = None
+    valid_elevation_samples: Optional[int] = None
+    elevation_source: Optional[str] = None
+    depth_method: Optional[str] = None
+    before_elevation_date: Optional[str] = None
+    after_elevation_date: Optional[str] = None
 
     class Config:
         from_attributes = True

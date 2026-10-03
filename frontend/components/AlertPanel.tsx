@@ -1,6 +1,7 @@
 "use client";
 
 import { Alert } from "@/types";
+import { formatAcres, formatAreaText } from "@/area";
 
 function formatDate(iso: string) {
   const d = new Date(iso);
@@ -40,10 +41,10 @@ export default function AlertPanel({
               <span className={isUnauthorized ? "text-red-300" : alert.severity === "WARNING" ? "text-amber-300" : "text-emerald-300"}>{alert.severity}</span>
               <span className="text-slate-500">{alert.is_read ? "Read" : "Unread"}</span>
             </div>
-            <p className="mt-2 text-sm leading-6 text-slate-300">{alert.message}</p>
+            <p className="mt-2 text-sm leading-6 text-slate-300">{formatAreaText(alert.message)}</p>
             {alert.expansion_area_ha > 0 && (
               <p className="mt-2 text-xs text-slate-300">
-                Expansion: <span className="font-medium text-amber-300">{alert.expansion_area_ha.toFixed(3)} ha</span> — Outside permitted boundary
+                Expansion: <span className="font-medium text-amber-300">{formatAcres(alert.expansion_area_ha, 3)}</span>; outside permitted boundary
               </p>
             )}
             <div className="mt-3 flex gap-2">

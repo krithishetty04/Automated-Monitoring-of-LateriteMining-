@@ -5,7 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.config import settings
 from app.database import init_db
-from app.api import monitoring, alerts, quarry
+from app.api import monitoring, alerts, quarry, site_updates
 from app.scheduler.weekly_monitor import start_scheduler, stop_scheduler
 
 
@@ -31,6 +31,7 @@ app.add_middleware(
 app.include_router(monitoring.router)
 app.include_router(alerts.router)
 app.include_router(quarry.router)
+app.include_router(site_updates.router)
 
 
 @app.get("/")

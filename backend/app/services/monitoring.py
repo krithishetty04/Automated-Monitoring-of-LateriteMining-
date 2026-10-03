@@ -39,6 +39,7 @@ from app.services import sentinel1
 from app.services.quarry_geometry import quarry_geojson_and_area
 from app.services.change_detection import determine_status
 from app.services.alert_service import create_alert_for_run
+from app.services.depth_estimation import DepthEstimate, estimate_configured_depth
 
 
 # ============================================================
@@ -280,6 +281,25 @@ def run_monitoring(
             "Monitoring pipeline returned no result."
         )
 
+    # Depth is an optional estimate based on separately configured elevation
+    # surfaces. The existing satellite detection polygon remains authoritative
+    # for the footprint, and elevation failures must never stop monitoring.
+    try:
+        depth_estimate = estimate_configured_depth(
+            result.get("new_geojson"),
+            comparison_start=(
+                result.get("previous_image_date")
+                or (previous_run.image_date if previous_run else None)
+            ),
+            comparison_end=result.get("image_date"),
+        )
+    except Exception as exc:
+        print(f"[monitoring] Optional depth estimate unavailable: {exc}")
+        depth_estimate = DepthEstimate(
+            status="UNAVAILABLE",
+            message="Elevation depth estimation could not be completed.",
+        )
+
     # ========================================================
     # STATUS
     # ========================================================
@@ -459,6 +479,7 @@ def run_monitoring(
             )
             else None
         ),
+        **depth_estimate.as_record(),
     )
 
     db.add(excavation_result)

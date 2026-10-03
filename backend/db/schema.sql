@@ -47,7 +47,19 @@ CREATE TABLE IF NOT EXISTS excavation_results (
     current_excavation_geojson       TEXT,
     previous_excavation_geojson      TEXT,
     new_excavation_geojson           TEXT,
-    unauthorized_expansion_geojson   TEXT
+    unauthorized_expansion_geojson   TEXT,
+    depth_status                     VARCHAR(32) NOT NULL DEFAULT 'UNAVAILABLE',
+    depth_message                    TEXT,
+    mean_depth_m                     FLOAT,
+    median_depth_m                   FLOAT,
+    max_depth_m                      FLOAT,
+    min_depth_m                      FLOAT,
+    estimated_volume_m3              FLOAT,
+    valid_elevation_samples          INTEGER,
+    elevation_source                 VARCHAR(255),
+    depth_method                     VARCHAR(255),
+    before_elevation_date            VARCHAR(20),
+    after_elevation_date             VARCHAR(20)
 );
 
 CREATE TABLE IF NOT EXISTS alerts (

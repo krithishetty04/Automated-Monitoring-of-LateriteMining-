@@ -40,6 +40,15 @@ class Settings(BaseSettings):
     # the 0.01 ha alert threshold unchanged while requiring spatial coherence.
     MIN_CONNECTED_PIXELS: int = Field(default=2)
 
+    # ---------------- Optional before/after elevation surfaces ----------------
+    ELEVATION_BEFORE_RASTER: str = Field(default="")
+    ELEVATION_AFTER_RASTER: str = Field(default="")
+    ELEVATION_DATA_SOURCE: str = Field(default="Configured elevation GeoTIFFs")
+    ELEVATION_VERTICAL_UNITS: str = Field(default="")
+    ELEVATION_BEFORE_DATE: str = Field(default="")
+    ELEVATION_AFTER_DATE: str = Field(default="")
+    DEPTH_MIN_VALID_SAMPLES: int = Field(default=3, ge=1)
+
     # ---------------- Laterite grade model ----------------
     LATERITE_MODEL_PATH: str = Field(
         default="",
