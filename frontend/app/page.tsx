@@ -59,7 +59,7 @@ export default function DashboardPage() {
             <h3 className="text-sm font-semibold text-white">Recent alerts</h3>
             <p className="mt-1 text-xs text-slate-400">Items needing attention</p>
           </div>
-          <Link href="/alerts" className="text-xs font-medium text-emerald-300 hover:text-white">View all ></Link>
+          <Link href="/alerts" className="text-xs font-medium text-emerald-300 hover:text-white">View all &gt;</Link>
         </div>
         <AlertPanel alerts={data.alerts.slice(0, 3)} onMarkRead={data.handleMarkRead} onViewOnMap={async (runId) => { await data.loadRunOnMap(runId); }} />
       </section>
