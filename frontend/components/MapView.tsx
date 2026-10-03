@@ -75,7 +75,7 @@ export default function MapView({
             <span className="inline-block h-0.5 w-4 rounded bg-emerald-950 ring-1 ring-emerald-200" />
             <span>Permitted boundary</span>
           </div>
-          <Toggle label="Excavation activity" color="#CC8C76" checked={toggles.activity} onChange={toggleActivity} />
+          <Toggle label="Excavation activity" color="#8F4D3A" checked={toggles.activity} onChange={toggleActivity} />
         </div>
       </div>
 
@@ -96,21 +96,21 @@ export default function MapView({
             <LeafletGeoJSON
               key="official-boundary"
               data={officialGeoJson as any}
-              style={{ color: "#2F3645", weight: 4, opacity: 1, fillColor: "#2F3645", fillOpacity: 0.12 }}
+              style={{ color: "#14532D", weight: 4, opacity: 1, fillColor: "#166534", fillOpacity: 0.16 }}
             />
           )}
           {toggles.activity && layers?.current_excavation && (
             <LeafletGeoJSON
               key={`current-${mapRunId}`}
               data={layers.current_excavation as any}
-              style={{ color: "#D28A83", weight: 1.5, fillOpacity: 0.38 }}
+              style={{ color: "#944C46", weight: 1.5, fillColor: "#944C46", fillOpacity: 0.58 }}
             />
           )}
           {toggles.activity && layers?.new_excavation && (
             <LeafletGeoJSON
               key={`newExc-${mapRunId}`}
               data={layers.new_excavation as any}
-              style={{ color: "#CC8C76", weight: 1.8, fillOpacity: 0.38 }}
+              style={{ color: "#8F4D3A", weight: 1.8, fillColor: "#8F4D3A", fillOpacity: 0.58 }}
             />
           )}
           {toggles.activity && layers?.unauthorized_expansion && (
