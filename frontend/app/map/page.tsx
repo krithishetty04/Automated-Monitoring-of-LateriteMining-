@@ -17,10 +17,11 @@ export default function MapPage() {
   }, [data.loadRunOnMap]);
 
   return <AppShell title="Quarry Map" eyebrow="Geospatial monitoring" actions={<span className="rounded-full border border-white/10 px-3 py-1.5 text-[11px] text-[#939185]">{data.quarry?.name || "Loading site"}</span>}>
-    <div className="mb-6 grid gap-4 sm:grid-cols-3">
+    <div className="mb-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
       <div className="rounded-xl border border-white/[0.08] bg-[#3B4251] p-4"><p className="text-[10px] uppercase tracking-[0.16em] text-[#939185]">Permitted area</p><p className="mt-2 text-2xl font-semibold text-[#E6B9A6]">{formatAcresValue(PERMITTED_AREA_ACRES)}</p></div>
       <div className="rounded-xl border border-white/[0.08] bg-[#3B4251] p-4"><p className="text-[10px] uppercase tracking-[0.16em] text-[#939185]">Latest result</p><p className="mt-2 text-2xl font-semibold text-white">{data.latestRun?.status || "NO DATA"}</p></div>
       <div className="rounded-xl border border-white/[0.08] bg-[#3B4251] p-4"><p className="text-[10px] uppercase tracking-[0.16em] text-[#939185]">Overlay run</p><p className="mt-2 text-2xl font-semibold text-white">{data.mapRunId ? `#${data.mapRunId}` : "-"}</p></div>
+      <div className="rounded-xl border border-white/[0.08] bg-[#3B4251] p-4"><p className="text-[10px] uppercase tracking-[0.16em] text-[#939185]">Permitted period</p><p className="mt-2 text-lg font-semibold text-white">23 Jan 2026 - 22 Jan 2027</p></div>
     </div>
     <div className="mb-5"><h2 className="text-lg font-semibold text-white">Activity map</h2><p className="mt-1 text-sm text-[#939185]">The legal boundary stays visible. Toggle excavation activity on or off to review the latest detected areas.</p></div>
     <MapView officialGeoJson={data.officialGeoJson} layers={data.layers} mapRunId={data.mapRunId} height={680} />
