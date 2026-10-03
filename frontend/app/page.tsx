@@ -1,9 +1,10 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import AppShell from "@/components/AppShell";
 import AlertPanel from "@/components/AlertPanel";
 import RunControls from "@/components/RunControls";
+import Charts from "@/components/Charts";
 import { useDashboardData } from "@/components/useDashboardData";
 
 function StatCard({ label, value, detail, tone = "neutral" }: { label: string; value: string | number; detail: string; tone?: "neutral" | "green" | "amber" | "red" }) {
@@ -53,6 +54,9 @@ export default function DashboardPage() {
         <StatCard label="Potential detections" value={potentialDetections} detail="Expansion alerts requiring review" tone={potentialDetections ? "red" : "neutral"} />
       </section>
 
+      <section className="mb-8 rounded-2xl border border-white/10 bg-slate-900/70 p-5 shadow-[0_0_0_1px_rgba(255,255,255,0.02)]">
+        <Charts runs={data.history.slice(-12)} />
+      </section>
       <section className="mb-8 rounded-2xl border border-white/10 bg-slate-900/70 shadow-[0_0_0_1px_rgba(255,255,255,0.02)]">
         <div className="flex items-center justify-between border-b border-white/10 px-5 py-4">
           <div>
